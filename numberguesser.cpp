@@ -12,8 +12,8 @@ int main()
     int guess = 0;
     int choice = 0;
     std::string difficulty;
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(nullptr);
+    //std::ios::sync_with_stdio(false);
+    //std::cin.tie(nullptr);
     std::cout << "Welcome to the Number Guessing game!\n"
               << "I'm thinking of a number between 1 and 100.\n"
               << "You have 5 chances to guess the correct number.\n\n"
@@ -50,16 +50,19 @@ int main()
         std::cin >> guess;
         std::cout << '\n';
         if (guess != correct)
+        {
             if (correct < guess)
-                std::cout << "Incorrect! The number is less than " << guess;
+                std::cout << "Incorrect! The number is less than " << guess << '\n';
             else if (correct > guess)
-                std::cout << "Incorrect! The number is greater than " << guess;
-            else
-            {
-                std::cout << "Congratulations! You guessed the correct number in " << usedChances << " attempts.";
-                break;
-            }
+                std::cout << "Incorrect! The number is greater than " << guess << '\n';
+        }
+        else if (correct == guess)
+        {
+            std::cout << "Congratulations! You guessed the correct number in " << usedChances << " attempts.";
+            return 0;
+        }
     }
 
+    std::cout << "You failed! The correct answer was " << correct << '\n';
     return 0;
 }
